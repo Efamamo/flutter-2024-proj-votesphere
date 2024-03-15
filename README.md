@@ -9,6 +9,7 @@ VoteSphere is a poll management application that allows users to work together w
 | Bereket Kelay               | [bereket kelay](https://github.com/member1username)   | UGR/9587/14 |
 | Ephrem Mamo Tora            | [ephrem mamo tora](https://github.com/Efamamo)         | UGR/1504/14 |
 | Yohannes Alemayehu Abdi     | [yohannes alemayehu abdi](https://github.com/yohannesalex) | UGR/2497/14 |
+| Ezana Kifle                 | [ezana kifle](https://github.com/e1z6u) | UGR/4189/14 |
 
 ## Features
 
@@ -32,6 +33,12 @@ VoteSphere is a poll management application that allows users to work together w
   - Update or delete polls based on user permissions.
   - View a list of polls within groups.
   - Cast a vote on polls.
+    
+- **Feedback and Comment:**
+
+  - Users can provide input, suggestions, or complaints through a dedicated feedback form.
+  - Users can leave comments on polls
+  - Option to submit feedback and comments anonymously to encourage honest opinions.
 
 - **Frontend with Flutter:**
 
