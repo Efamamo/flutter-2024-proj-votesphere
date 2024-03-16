@@ -9,7 +9,7 @@ VoteSphere is a poll management application that allows users to work together w
 | Bereket Kelay               | [bereket kelay](https://github.com/member1username)   | UGR/9587/14 |
 | Ephrem Mamo Tora            | [ephrem mamo tora](https://github.com/Efamamo)         | UGR/1504/14 |
 | Yohannes Alemayehu Abdi     | [yohannes alemayehu abdi](https://github.com/yohannesalex) | UGR/2497/14 |
-| Ezana Kifle                 | [ezana kifle](https://github.com/e1z6u) | UGR/4189/14 |
+| Ezana Kifle                 | [Ezana Kifle](https://github.com/e1z6u) | UGR/4189/14 |
 
 ## Features
 
