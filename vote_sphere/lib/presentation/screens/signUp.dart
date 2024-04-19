@@ -113,39 +113,47 @@ class _SignUpPageState extends State<SignUpPage> {
                                 }
                               })
                         ]))),
-                Row(
+                Column(
                   children: <Widget>[
                     Text(
-                      "signup as",
+                      "Signup As",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Radio(
-                            value: 1,
-                            groupValue: index,
-                            onChanged: (value) {
-                              setState(() {
-                                index = value;
-                              });
-                            }),
-                        Text("member")
+                        Row(
+                          children: [
+                            Radio(
+                                value: 1,
+                                groupValue: index,
+                                onChanged: (value) {
+                                  setState(() {
+                                    index = value;
+                                  });
+                                }),
+                            Text("Member")
+                          ],
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Row(
+                          children: [
+                            Radio(
+                                value: 2,
+                                groupValue: index,
+                                onChanged: (value) {
+                                  setState(() {
+                                    index = value;
+                                  });
+                                }),
+                            Text("Admin")
+                          ],
+                        )
                       ],
                     ),
-                    Row(
-                      children: [
-                        Radio(
-                            value: 2,
-                            groupValue: index,
-                            onChanged: (value) {
-                              setState(() {
-                                index = value;
-                              });
-                            }),
-                        Text("admin")
-                      ],
-                    )
                   ],
                 ),
                 Container(

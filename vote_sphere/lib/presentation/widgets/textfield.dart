@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
 class MyTextField extends StatefulWidget {
-  MyTextField({super.key, required this.controller, required this.hintText});
+  MyTextField(
+      {super.key,
+      required this.controller,
+      required this.lines,
+      required this.hintText});
   String hintText;
+  int lines;
   TextEditingController controller;
 
   @override
@@ -13,10 +18,10 @@ class _MyTextFieldState extends State<MyTextField> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+        maxLines: widget.lines,
         controller: widget.controller,
         decoration: InputDecoration(
-          filled: true, // Enable filling the TextField background
-          fillColor: Colors.grey[300],
+          // contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 5),
           hintText: widget.hintText,
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
         ));
