@@ -9,7 +9,10 @@ class NewPolls extends StatefulWidget {
     required this.choice3,
     required this.choice4,
     required this.choice5,
-    required this.error,
+    required this.choice1Error,
+    required this.choice2Error,
+    required this.choice3Error,
+    required this.questionError,
     required this.submit,
   });
   TextEditingController question;
@@ -19,7 +22,10 @@ class NewPolls extends StatefulWidget {
   TextEditingController choice4;
   TextEditingController choice5;
   void Function() submit;
-  String error = '';
+  String choice1Error = '';
+  String choice2Error = '';
+  String choice3Error = '';
+  String questionError = '';
 
   @override
   State<NewPolls> createState() => _NewPollsState();
@@ -29,6 +35,17 @@ class _NewPollsState extends State<NewPolls> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 2, 34, 82),
+        title: const Text(
+          "POLLS",
+          style: TextStyle(color: Colors.white, letterSpacing: 2.0),
+        ),
+        iconTheme: const IconThemeData(
+          color: Colors.white,
+        ),
+        centerTitle: true,
+      ),
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
@@ -36,43 +53,113 @@ class _NewPollsState extends State<NewPolls> {
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               const Text(
-                "Enter Poll Information",
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                "Please enter the poll information. Make sure to include a question for the poll, as well as three answer choices. All fields are required, so ensure you provide a question and three choices to complete the poll entry.",
+                style: TextStyle(fontSize: 16),
               ),
               const SizedBox(
                 height: 50,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Question:",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: MyTextField(
-                        hintText: 'Enter the question......',
-                        controller: widget.question),
-                  ),
-                ],
+              const Text(
+                "Enter Poll Information",
+                style: TextStyle(
+                    color: const Color.fromARGB(255, 2, 34, 82),
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold),
               ),
-              const SizedBox(
+              SizedBox(
                 height: 40,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const Text.rich(
+                    TextSpan(children: [
+                      TextSpan(
+                          text: "Question",
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      TextSpan(text: ' *', style: TextStyle(color: Colors.red))
+                    ]),
+                  ),
+                  MyTextField(
+                      hintText: 'Enter the question......',
+                      controller: widget.question,
+                      lines: 3),
                   Text(
-                    "Choice 1:",
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    widget.questionError,
+                    style: TextStyle(color: Colors.red),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text.rich(
+                    TextSpan(children: [
+                      TextSpan(
+                          text: "Choice 1",
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      TextSpan(text: ' *', style: TextStyle(color: Colors.red))
+                    ]),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: MyTextField(
-                        hintText: 'Enter the choice1......',
-                        controller: widget.choice1),
+                  MyTextField(
+                      hintText: 'Enter the choice1......',
+                      controller: widget.choice1,
+                      lines: 1),
+                  Text(
+                    widget.choice1Error,
+                    style: TextStyle(color: Colors.red),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text.rich(
+                    TextSpan(children: [
+                      TextSpan(
+                          text: "Choice 2",
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      TextSpan(text: ' *', style: TextStyle(color: Colors.red))
+                    ]),
                   ),
+                  MyTextField(
+                      hintText: 'Enter the choice2......',
+                      controller: widget.choice2,
+                      lines: 1),
+                  Text(
+                    widget.choice2Error,
+                    style: TextStyle(color: Colors.red),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text.rich(
+                    TextSpan(children: [
+                      TextSpan(
+                          text: "Choice 3",
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      TextSpan(text: ' *', style: TextStyle(color: Colors.red))
+                    ]),
+                  ),
+                  MyTextField(
+                      hintText: 'Enter the choice3......',
+                      controller: widget.choice3,
+                      lines: 1),
+                  Text(
+                    widget.choice3Error,
+                    style: TextStyle(color: Colors.red),
+                  )
                 ],
               ),
               const SizedBox(
@@ -82,15 +169,13 @@ class _NewPollsState extends State<NewPolls> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    "Choice 2:",
+                    "Choice 4",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: MyTextField(
-                        hintText: 'Enter the choice2......',
-                        controller: widget.choice2),
-                  ),
+                  MyTextField(
+                      hintText: 'Enter the choice4......',
+                      controller: widget.choice4,
+                      lines: 1),
                 ],
               ),
               const SizedBox(
@@ -100,51 +185,13 @@ class _NewPollsState extends State<NewPolls> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    "Choice 3:",
+                    "Choice 5",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: MyTextField(
-                        hintText: 'Enter the choice3......',
-                        controller: widget.choice3),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Choice 4:",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(5),
-                    child: MyTextField(
-                        hintText: 'Enter the choice4......',
-                        controller: widget.choice4),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Choice 5:",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: MyTextField(
-                        hintText: 'Enter the choice5......',
-                        controller: widget.choice5),
-                  ),
+                  MyTextField(
+                      hintText: 'Enter the choice5......',
+                      controller: widget.choice5,
+                      lines: 1),
                 ],
               ),
               const SizedBox(
@@ -152,7 +199,7 @@ class _NewPollsState extends State<NewPolls> {
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.grey,
+                  backgroundColor: Colors.blue,
                   foregroundColor: Colors.white,
                 ),
                 onPressed: widget.submit,
@@ -161,10 +208,6 @@ class _NewPollsState extends State<NewPolls> {
               const SizedBox(
                 height: 20,
               ),
-              Text(
-                widget.error,
-                style: const TextStyle(color: Colors.red),
-              )
             ]),
           ),
         ),
