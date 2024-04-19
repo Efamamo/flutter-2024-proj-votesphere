@@ -4,6 +4,8 @@ import 'package:flutter/widgets.dart';
 import '../widgets/buttons.dart';
 import 'new_polls.dart';
 import 'questions_model.dart';
+import 'settings.dart';
+import 'login.dart';
 
 class Home extends StatefulWidget {
   Home({super.key});
@@ -24,7 +26,10 @@ class _HomeState extends State<Home> {
   TextEditingController choice5 = TextEditingController();
   List<Question> questions = [];
 
-  String error = '';
+  String questionError = '';
+  String choice1Error = '';
+  String choice2Error = '';
+  String choice3Error = '';
   List<Object?> _index = [];
   List<List> votes = [];
   List<bool> disabled = [];
@@ -40,11 +45,17 @@ class _HomeState extends State<Home> {
 
   void submitForm() {
     setState(() {
-      if (question.text == '' ||
-          choice1.text == '' ||
-          choice2.text == '' ||
-          choice3.text == '') {
-        error = 'A Question and atleast 3 choices are mandatory';
+      if (question.text == '') {
+        questionError = 'Please Enter the question';
+      }
+      if (choice1.text == '') {
+        choice1Error = 'Please Enter choice 1';
+      }
+      if (choice2.text == '') {
+        choice1Error = 'Please Enter choice 2';
+      }
+      if (choice3.text == '') {
+        choice1Error = 'Please Enter choice 3';
       } else {
         votes.add([]);
         List<String> answer = [];
@@ -75,7 +86,10 @@ class _HomeState extends State<Home> {
         Question current =
             Question(question: question.text, answers: answer, comment: []);
         questions.add(current);
-        error = '';
+        questionError = '';
+        choice1Error = '';
+        choice2Error = '';
+        choice3Error = '';
         choice1.clear();
         choice2.clear();
         choice3.clear();
@@ -125,7 +139,10 @@ class _HomeState extends State<Home> {
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       return NewPolls(
         question: question,
-        error: error,
+        questionError: questionError,
+        choice1Error: choice1Error,
+        choice2Error: choice2Error,
+        choice3Error: choice3Error,
         choice1: choice1,
         choice2: choice2,
         choice3: choice3,
@@ -166,7 +183,9 @@ class _HomeState extends State<Home> {
                     height: 30,
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
                     child: const Row(
                       children: [
                         Icon(Icons.home),
@@ -181,7 +200,12 @@ class _HomeState extends State<Home> {
                     height: 20,
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return Settings();
+                      }));
+                    },
                     child: const Row(
                       children: [
                         Icon(Icons.settings),
@@ -215,7 +239,11 @@ class _HomeState extends State<Home> {
                 ],
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return LoginPage();
+                  }));
+                },
                 child: const Row(
                   children: [
                     Icon(Icons.logout),
@@ -231,7 +259,7 @@ class _HomeState extends State<Home> {
         ),
       ),
       body: Center(
-        child: group != ''
+        child: group == ''
             ? Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -320,6 +348,19 @@ class _HomeState extends State<Home> {
                   )
                 : SingleChildScrollView(
                     child: Column(children: [
+                      Row(
+                        children: [
+                          Text("Enjoy the Poll",
+                              style: TextStyle(
+                                  color: Colors.deepOrange,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold)),
+                          Icon(Icons.emoji_events),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 50,
+                      ),
                       Text("Your Polls",
                           style: TextStyle(
                               color: Colors.blue[900],
