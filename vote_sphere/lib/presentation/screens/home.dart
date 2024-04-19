@@ -184,21 +184,6 @@ class _HomeState extends State<Home> {
                     onTap: () {},
                     child: const Row(
                       children: [
-                        Icon(Icons.people),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        Text("MEMBERS")
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: const Row(
-                      children: [
                         Icon(Icons.settings),
                         SizedBox(
                           width: 12,
@@ -206,6 +191,26 @@ class _HomeState extends State<Home> {
                         Text("SETTINGS")
                       ],
                     ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  group != ''
+                      ? GestureDetector(
+                          onTap: () {},
+                          child: const Row(
+                            children: [
+                              Icon(Icons.people),
+                              SizedBox(
+                                width: 12,
+                              ),
+                              Text("MEMBERS")
+                            ],
+                          ),
+                        )
+                      : const Text(''),
+                  const SizedBox(
+                    height: 20,
                   ),
                 ],
               ),
@@ -226,7 +231,7 @@ class _HomeState extends State<Home> {
         ),
       ),
       body: Center(
-        child: group == ''
+        child: group != ''
             ? Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -243,7 +248,10 @@ class _HomeState extends State<Home> {
                         children: [
                           TextSpan(
                             text: 'Votesphere',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: const Color.fromARGB(255, 2, 34, 82),
+                            ),
                           ),
                           TextSpan(
                             text:
@@ -287,6 +295,10 @@ class _HomeState extends State<Home> {
                 ? Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      Image.asset(
+                        '../../../assets/vote.jpg',
+                        width: 230,
+                      ),
                       Text(group),
                       const Text(
                         "You dont have polls",
