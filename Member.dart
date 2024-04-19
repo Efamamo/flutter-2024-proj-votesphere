@@ -234,6 +234,6 @@ class MemberListItem extends StatelessWidget {
       ),
     );
   }
-
+}
 
 
