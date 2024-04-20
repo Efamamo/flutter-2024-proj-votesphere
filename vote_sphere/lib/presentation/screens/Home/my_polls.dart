@@ -66,32 +66,6 @@ class _MyPollsState extends State<MyPolls> {
         const SizedBox(
           height: 20,
         ),
-        Padding(
-          padding: EdgeInsets.all(10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  // Navigate to the second page
-                  Navigator.pushNamed(context, 'feedBack');
-                },
-                child: const Text(
-                  'feedback',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.blue,
-                  ),
-                ),
-              ),
-              const Icon(
-                Icons.question_mark,
-                color: Colors.blue,
-                size: 18,
-              )
-            ],
-          ),
-        ),
         const SizedBox(
           height: 20,
         ),

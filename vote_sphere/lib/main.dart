@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'presentation/screens/landing_page.dart';
 import 'presentation/screens/home.dart';
-import 'presentation/screens/feedback.dart';
 import 'presentation/screens/login.dart';
 import 'presentation/screens/settings.dart';
 import 'presentation/screens/signUp.dart';
@@ -33,7 +32,6 @@ class MyApp extends StatelessWidget {
         'home': (context) => Home(),
         'signUp': (context) => SignUpPage(),
         'login': (context) => LoginPage(),
-        'feedBack': (context) => FeedBackForm(),
         'settings': (context) => Settings(),
         'members': (context) => Members(),
       },
