@@ -117,10 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                             color: Colors.lightBlue,
                             onPressed: () {
                               if (formkey.currentState!.validate()) {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Home()));
+                                Navigator.pushNamed(context, 'home');
                               }
                             },
                             elevation: 0,
@@ -144,11 +141,7 @@ class _LoginPageState extends State<LoginPage> {
                           GestureDetector(
                             onTap: () {
                               // Navigate to the second page
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => SignUpPage()),
-                              );
+                              Navigator.pushNamed(context, 'signUp');
                             },
                             child: Text(
                               ' Sign up',
@@ -176,11 +169,7 @@ class _LoginPageState extends State<LoginPage> {
                             GestureDetector(
                               onTap: () {
                                 // Navigate to the second page
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => FeedBackForm()),
-                                );
+                                Navigator.pushNamed(context, 'feedBack');
                               },
                               child: Text(
                                 'feedback',

@@ -170,7 +170,9 @@ class _SignUpPageState extends State<SignUpPage> {
                     height: 60,
                     color: Colors.lightBlue,
                     onPressed: () {
-                      if (formkey.currentState!.validate()) {}
+                      if (formkey.currentState!.validate()) {
+                        Navigator.pushNamed(context, 'home');
+                      }
                     },
                     elevation: 0,
                     shape: RoundedRectangleBorder(
@@ -192,10 +194,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     GestureDetector(
                       onTap: () {
                         // Navigate to the second page
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => LoginPage()),
-                        );
+                        Navigator.pushNamed(context, 'login');
                       },
                       child: Text(
                         ' Login',

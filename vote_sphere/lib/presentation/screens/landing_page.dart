@@ -65,10 +65,7 @@ class LandingPage extends StatelessWidget {
                       minWidth: double.infinity,
                       height: 60,
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoginPage()));
+                        Navigator.pushNamed(context, 'login');
                       },
                       shape: RoundedRectangleBorder(
                           side: BorderSide(color: Colors.amberAccent),
@@ -84,10 +81,7 @@ class LandingPage extends StatelessWidget {
                       minWidth: double.infinity,
                       height: 60,
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SignUpPage()));
+                        Navigator.pushNamed(context, 'signUp');
                       },
                       color: Color(0xff0095FF),
                       shape: RoundedRectangleBorder(
