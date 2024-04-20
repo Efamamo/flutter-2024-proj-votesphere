@@ -57,7 +57,7 @@ class LandingPage extends StatelessWidget {
                   height: MediaQuery.of(context).size.height / 3,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage("../../../assets/images.png"))),
+                          image: AssetImage("assets/images.png"))),
                 ),
                 Column(
                   children: <Widget>[

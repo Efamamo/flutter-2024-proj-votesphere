@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Settings extends StatelessWidget {
-  const Settings({super.key});
+  const Settings();
   void updateUsername(context) {
     showDialog(
         context: context,
@@ -12,8 +12,8 @@ class Settings extends StatelessWidget {
               "Update Username",
               style: TextStyle(color: Colors.black),
             ),
-            content: TextField(
-              decoration: const InputDecoration(
+            content: const TextField(
+              decoration: InputDecoration(
                   hintText: 'Enter Username',
                   hintStyle: TextStyle(color: Colors.black)),
             ),
@@ -47,7 +47,7 @@ class Settings extends StatelessWidget {
           centerTitle: true,
         ),
         body: Container(
-          height: 300,
+          height: 330,
           margin: EdgeInsets.all(30),
           decoration: BoxDecoration(
               color: const Color.fromARGB(255, 253, 250, 250),
@@ -56,22 +56,22 @@ class Settings extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              ListTile(
+              const ListTile(
                 leading: Icon(Icons.person),
                 title: Text("Ephrem"),
                 subtitle: Text("username"),
               ),
-              ListTile(
+              const ListTile(
                 leading: Icon(Icons.email),
                 title: Text("e@gmail.com"),
                 subtitle: Text("email"),
               ),
-              ListTile(
+              const ListTile(
                 leading: Icon(Icons.group),
                 title: Text("group 1"),
                 subtitle: Text("group"),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
               Row(
@@ -87,7 +87,7 @@ class Settings extends StatelessWidget {
                       onPressed: () {
                         updateUsername(context);
                       }),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   ElevatedButton(
@@ -97,9 +97,7 @@ class Settings extends StatelessWidget {
                               borderRadius: BorderRadius.circular(5)),
                           backgroundColor: Colors.red[600],
                           foregroundColor: Colors.white),
-                      onPressed: () {
-                        Navigator.pushNamed(context, 'login');
-                      }),
+                      onPressed: () {}),
                 ],
               )
             ],

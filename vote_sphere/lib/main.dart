@@ -6,9 +6,17 @@ import 'presentation/screens/login.dart';
 import 'presentation/screens/settings.dart';
 import 'presentation/screens/signUp.dart';
 import 'presentation/screens/member.dart';
+import 'package:provider/provider.dart';
+import 'presentation/providers/group_provider.dart';
+import 'presentation/providers/pole_provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(child: const MyApp(), providers: [
+      ChangeNotifierProvider(create: (_) => GroupProvider()),
+      ChangeNotifierProvider(create: (_) => PollProvider()),
+    ]),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -21,7 +29,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: 'landing',
       routes: {
-        'landing': (context) => LandingPage(),
+        'landing': (context) => const LandingPage(),
         'home': (context) => Home(),
         'signUp': (context) => SignUpPage(),
         'login': (context) => LoginPage(),
