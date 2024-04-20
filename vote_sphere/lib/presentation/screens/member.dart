@@ -120,3 +120,80 @@ class _MemberPageState extends State<MemberPage> {
                               return null;
                             },
                           ),
+
+                          SizedBox(height: 10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              ElevatedButton(
+                                onPressed: addMember,
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Color(0xFF85C1E9),
+                                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30), // Increased the border radius
+                                  ),
+                                ),
+                                child: Text('Add', style: TextStyle(color: Colors.white)),
+                              ),
+                              ElevatedButton(
+                                onPressed: toggleFormVisibility,
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Color(0xFF85C1E9),
+                                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30), // Increased the border radius
+                                  ),
+                                ),
+                                child: Text('Back', style: TextStyle(color: Colors.white)),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    )
+                        : ElevatedButton(
+                      onPressed: toggleFormVisibility,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFF85C1E9),
+                        padding: EdgeInsets.symmetric(horizontal: 60, vertical: 20),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30), // Increased the border radius
+                        ),
+                      ),
+                      child: Text('Add Member', style: TextStyle(color: Colors.white)),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 20),
+          if (_members.isEmpty)
+            Padding(
+              padding: EdgeInsets.only(top: 200),
+              child: Align(
+                alignment: Alignment.center,
+                child: Text(
+                  'No Member Added Yet',
+                  style: TextStyle(fontSize: 18, fontWeight:FontWeight.bold ),
+                ),
+              ),
+            ),
+
+          Expanded(
+            child: ListView.builder(
+              itemCount: _members.length,
+              itemBuilder: (context, index) {
+                return MemberListItem(
+                  name: _members[index],
+                  onDelete: () => deleteMember(index),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
