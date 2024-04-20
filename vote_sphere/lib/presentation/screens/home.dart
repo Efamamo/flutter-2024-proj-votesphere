@@ -45,21 +45,15 @@ class _HomeState extends State<Home> {
 
   void submitForm() {
     setState(() {
-      if (question.text == '') {
-        questionError = 'Please Enter the question';
-      }
-      if (choice1.text == '') {
-        choice1Error = 'Please Enter choice 1';
-      }
-      if (choice2.text == '') {
-        choice1Error = 'Please Enter choice 2';
-      }
-      if (choice3.text == '') {
-        choice1Error = 'Please Enter choice 3';
+      if (question.text == '' ||
+          choice1.text == '' ||
+          choice2.text == '' ||
+          choice3.text == '') {
+        questionError = 'Please Enter the question and atleast 3 choices';
       } else {
         votes.add([]);
         List<String> answer = [];
-        print(choice5.text);
+
         if (choice1.text != '') {
           answer.add(choice1.text);
           votes[votes.length - 1].add(0);
@@ -324,7 +318,9 @@ class _HomeState extends State<Home> {
                         '../../../assets/vote.jpg',
                         width: 230,
                       ),
-                      Text(group),
+                      SizedBox(
+                        height: 60,
+                      ),
                       const Text(
                         "You dont have polls",
                         style: TextStyle(
@@ -333,10 +329,12 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 30,
                       ),
                       ElevatedButton(
                           style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5)),
                               foregroundColor: Colors.white,
                               backgroundColor: Colors.blue[700]),
                           onPressed: navigateNewPolls,
@@ -377,9 +375,8 @@ class _HomeState extends State<Home> {
                                           children: [
                                             Text(question.question,
                                                 style: const TextStyle(
-                                                    fontSize: 20,
-                                                    fontWeight:
-                                                        FontWeight.bold)),
+                                                  fontSize: 20,
+                                                )),
                                             IconButton(
                                                 onPressed: () {
                                                   setState(() {
@@ -494,12 +491,32 @@ class _HomeState extends State<Home> {
                                             padding: const EdgeInsets.symmetric(
                                                 horizontal: 18, vertical: 6),
                                             child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
-                                                const Icon(Icons.person),
-                                                const SizedBox(
-                                                  width: 20,
+                                                Row(
+                                                  children: [
+                                                    const Icon(Icons.person),
+                                                    const SizedBox(
+                                                      width: 20,
+                                                    ),
+                                                    Text(com),
+                                                  ],
                                                 ),
-                                                Text(com)
+                                                IconButton(
+                                                  icon: Icon(Icons.delete,
+                                                      color: Colors.red[800]),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      question.comment.remove(
+                                                          question.comment[
+                                                              question.comment
+                                                                  .indexOf(
+                                                                      com)]);
+                                                    });
+                                                  },
+                                                )
                                               ],
                                             ),
                                           )),
@@ -510,12 +527,18 @@ class _HomeState extends State<Home> {
                                           controller: commentController,
                                           decoration: InputDecoration(
                                               suffixIcon: IconButton(
-                                                icon: Icon(Icons.send),
+                                                icon: Icon(Icons.send,
+                                                    color: Colors.blue),
                                                 onPressed: () {
                                                   setState(() {
-                                                    question.comment.add(
-                                                        commentController.text);
-                                                    commentController.clear();
+                                                    if (commentController
+                                                            .text !=
+                                                        "") {
+                                                      question.comment.add(
+                                                          commentController
+                                                              .text);
+                                                      commentController.clear();
+                                                    }
                                                   });
                                                 },
                                               ),
@@ -529,12 +552,46 @@ class _HomeState extends State<Home> {
                       const SizedBox(
                         height: 20,
                       ),
+                      Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                // Navigate to the second page
+                                Navigator.pushNamed(context, 'feedBack');
+                              },
+                              child: Text(
+                                'feedback',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.blue,
+                                ),
+                              ),
+                            ),
+                            Icon(
+                              Icons.question_mark,
+                              color: Colors.blue,
+                              size: 18,
+                            )
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
                       ElevatedButton(
                           style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5)),
                               foregroundColor: Colors.white,
                               backgroundColor: Colors.blue[700]),
                           onPressed: navigateNewPolls,
-                          child: const Text("Add Poll"))
+                          child: const Text("Add Poll")),
+                      SizedBox(
+                        height: 50,
+                      )
                     ]),
                   ),
       ),

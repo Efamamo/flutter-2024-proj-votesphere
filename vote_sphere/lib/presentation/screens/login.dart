@@ -161,32 +161,6 @@ class _LoginPageState extends State<LoginPage> {
                                 image: AssetImage("../../../assets/key.png"),
                                 fit: BoxFit.fitHeight)),
                       ),
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                // Navigate to the second page
-                                Navigator.pushNamed(context, 'feedBack');
-                              },
-                              child: Text(
-                                'feedback',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.blue,
-                                ),
-                              ),
-                            ),
-                            Icon(
-                              Icons.question_mark,
-                              color: Colors.blue,
-                              size: 18,
-                            )
-                          ],
-                        ),
-                      )
                     ]))
               ],
             ),

@@ -2,6 +2,35 @@ import 'package:flutter/material.dart';
 
 class Settings extends StatelessWidget {
   const Settings({super.key});
+  void updateUsername(context) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            backgroundColor: Colors.grey[200],
+            title: const Text(
+              "Update Username",
+              style: TextStyle(color: Colors.black),
+            ),
+            content: TextField(
+              decoration: const InputDecoration(
+                  hintText: 'Enter Username',
+                  hintStyle: TextStyle(color: Colors.black)),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text(
+                  "Change Username",
+                  style: TextStyle(color: Colors.black),
+                ),
+              )
+            ],
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,18 +80,26 @@ class Settings extends StatelessWidget {
                   ElevatedButton(
                       child: Text("Update Username"),
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5)),
+                          backgroundColor: Colors.blue[700],
                           foregroundColor: Colors.white),
-                      onPressed: () {}),
+                      onPressed: () {
+                        updateUsername(context);
+                      }),
                   SizedBox(
                     width: 20,
                   ),
                   ElevatedButton(
                       child: Text("DeleteAccount"),
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5)),
+                          backgroundColor: Colors.red[600],
                           foregroundColor: Colors.white),
-                      onPressed: () {}),
+                      onPressed: () {
+                        Navigator.pushNamed(context, 'login');
+                      }),
                 ],
               )
             ],

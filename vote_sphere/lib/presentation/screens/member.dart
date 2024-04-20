@@ -128,12 +128,12 @@ class _MemberPageState extends State<MemberPage> {
                                     ElevatedButton(
                                       onPressed: addMember,
                                       style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.blue,
+                                        backgroundColor: Colors.blue[700],
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 50, vertical: 20),
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(
-                                              30), // Increased the border radius
+                                              5), // Increased the border radius
                                         ),
                                       ),
                                       child: Text('Add',
@@ -146,12 +146,12 @@ class _MemberPageState extends State<MemberPage> {
                                     ElevatedButton(
                                       onPressed: toggleFormVisibility,
                                       style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.red,
+                                        backgroundColor: Colors.red[600],
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 50, vertical: 20),
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(
-                                              30), // Increased the border radius
+                                              5), // Increased the border radius
                                         ),
                                       ),
                                       child: Text('Back',
@@ -171,7 +171,7 @@ class _MemberPageState extends State<MemberPage> {
                                   horizontal: 60, vertical: 20),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(
-                                    30), // Increased the border radius
+                                    5), // Increased the border radius
                               ),
                             ),
                             child: Text('Add Member',

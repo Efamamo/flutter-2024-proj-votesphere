@@ -8,7 +8,6 @@ class FeedBackForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-
         FocusScopeNode currentFocus = FocusScope.of(context);
         if (!currentFocus.hasPrimaryFocus) {
           currentFocus.unfocus();
@@ -16,29 +15,15 @@ class FeedBackForm extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text(
-            "Feedback",
-            style: TextStyle(fontWeight: FontWeight.bold),
+          backgroundColor: const Color.fromARGB(255, 2, 34, 82),
+          title: const Text(
+            "FEEDBACK",
+            style: TextStyle(color: Colors.white, letterSpacing: 2.0),
+          ),
+          iconTheme: const IconThemeData(
+            color: Colors.white,
           ),
           centerTitle: true,
-          bottom: PreferredSize(
-            preferredSize: Size.fromHeight(1.0),
-            child: Container(
-              color: Colors.amberAccent, // color of the underline
-              height: 1.0, // thickness of the underline
-            ),
-          ),
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              size: 20,
-              color: Colors.black,
-            ),
-          ),
-          systemOverlayStyle: SystemUiOverlayStyle.dark,
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -47,7 +32,7 @@ class FeedBackForm extends StatelessWidget {
               children: [
                 Text(
                   "Choose the category of your feedback",
-                  style: TextStyle(fontSize: 15),
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 20),
                 Column(
@@ -55,7 +40,7 @@ class FeedBackForm extends StatelessWidget {
                     FeedbackWidget(text: "login"),
                     FeedbackWidget(text: "signup"),
                     FeedbackWidget(text: "poll"),
-                    FeedbackWidget(text: "other issues"),
+                    FeedbackWidget(text: "complient"),
                     FeedbackWidget(text: "suggestion"),
                   ],
                 ),
@@ -67,31 +52,26 @@ class FeedBackForm extends StatelessWidget {
                     maxLines: 10,
                     decoration: InputDecoration(
                       hintText:
-                      "Please briefly describe the issue you have faced",
-                      hintStyle: TextStyle(
-                          fontSize: 13, color: Color(0xffc5c5c5)),
+                          "Please briefly describe the issue you have faced",
+                      hintStyle:
+                          TextStyle(fontSize: 13, color: Color(0xffc5c5c5)),
                       border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Color(0xffe5e5e5))),
+                          borderSide: BorderSide(color: Color(0xffe5e5e5))),
                     ),
                   ),
                 ),
                 SizedBox(height: 20),
-                MaterialButton(
-                  minWidth: 80,
-                  height: 40,
-                  color: Colors.lightBlueAccent,
-                  onPressed: () {},
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      foregroundColor: Colors.white),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   child: Text(
                     "Submit",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18,
-                      color: Colors.white,
-                    ),
                   ),
                 ),
               ],
@@ -153,4 +133,3 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
     );
   }
 }
-

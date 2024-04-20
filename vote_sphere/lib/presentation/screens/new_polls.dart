@@ -199,7 +199,9 @@ class _NewPollsState extends State<NewPolls> {
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5)),
+                  backgroundColor: Colors.blue[700],
                   foregroundColor: Colors.white,
                 ),
                 onPressed: widget.submit,
