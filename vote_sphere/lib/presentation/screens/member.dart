@@ -197,3 +197,41 @@ class _MemberPageState extends State<MemberPage> {
     );
   }
 }
+
+class MemberListItem extends StatelessWidget {
+  final String name;
+  final VoidCallback onDelete;
+
+  const MemberListItem({Key? key, required this.name, required this.onDelete}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Material(
+        elevation: 4,
+        borderRadius: BorderRadius.circular(10),
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Icon(Icons.person, color: Color(0xFF85C1E9)),
+                  SizedBox(width: 10),
+                  Text(name, style: TextStyle(fontSize: 16, color: Color(0xFF85C1E9))),
+                ],
+              ),
+              IconButton(
+                icon: Icon(Icons.delete),
+                onPressed: onDelete,
+                color: Colors.red,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
