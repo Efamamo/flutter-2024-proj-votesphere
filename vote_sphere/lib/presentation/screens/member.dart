@@ -1,31 +1,23 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(Members());
 }
 
-class MyApp extends StatelessWidget {
+class Members extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color(0xFF85C1E9),
-          title: Text(
-            'Members',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-          centerTitle: true,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              // Add functionality to navigate back if needed
-            },
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 2, 34, 82),
+        title: Text(
+          'Members',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        body: MemberPage(),
+        iconTheme: IconThemeData(color: Colors.white),
+        centerTitle: true,
       ),
+      body: MemberPage(),
     );
   }
 }
@@ -69,12 +61,14 @@ class _MemberPageState extends State<MemberPage> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0), // Added x-direction padding
+      padding: const EdgeInsets.symmetric(
+          horizontal: 10.0), // Added x-direction padding
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(height: 20),
-          if (_errorMessage.isNotEmpty) // Display error message if it's not empty
+          if (_errorMessage
+              .isNotEmpty) // Display error message if it's not empty
             Text(
               _errorMessage,
               style: TextStyle(color: Colors.red, fontSize: 18),
@@ -83,11 +77,14 @@ class _MemberPageState extends State<MemberPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(width: 7), // Added padding to the left of the circular avatar
+              SizedBox(
+                  width: 7), // Added padding to the left of the circular avatar
               CircleAvatar(
                 radius: 45,
-                backgroundColor: Color(0xFF85C1E9),
-                child: Icon(Icons.people, size: 50, color: Colors.white), // Changed the icon to 'people'
+                backgroundColor: Color.fromARGB(255, 2, 34, 82),
+                child: Icon(Icons.people,
+                    size: 25,
+                    color: Colors.white), // Changed the icon to 'people'
               ),
               SizedBox(width: 20),
               Expanded(
@@ -97,72 +94,89 @@ class _MemberPageState extends State<MemberPage> {
                     duration: Duration(milliseconds: 300),
                     child: _showForm
                         ? Container(
-                      width: MediaQuery.of(context).size.width * 0.7,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          TextFormField(
-                            controller: _usernameController,
-                            decoration: InputDecoration(
-                              labelText: 'Enter Username',
-                              labelStyle: TextStyle(color: Colors.black), // Text color
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Color(0xFF85C1E9)), // Border color
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Color(0xFF85C1E9)), // Focused border color
+                            width: MediaQuery.of(context).size.width * 0.7,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                TextFormField(
+                                  controller: _usernameController,
+                                  decoration: InputDecoration(
+                                    labelText: 'Enter Username',
+                                    labelStyle: TextStyle(
+                                        color: Colors.black), // Text color
+                                    border: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Colors.blue), // Border color
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Colors
+                                              .blue), // Focused border color
+                                    ),
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Please enter a username';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                SizedBox(height: 10),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ElevatedButton(
+                                      onPressed: addMember,
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.blue,
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 50, vertical: 20),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              30), // Increased the border radius
+                                        ),
+                                      ),
+                                      child: Text('Add',
+                                          style:
+                                              TextStyle(color: Colors.white)),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    ElevatedButton(
+                                      onPressed: toggleFormVisibility,
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.red,
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 50, vertical: 20),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              30), // Increased the border radius
+                                        ),
+                                      ),
+                                      child: Text('Back',
+                                          style:
+                                              TextStyle(color: Colors.white)),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          )
+                        : ElevatedButton(
+                            onPressed: toggleFormVisibility,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue[500],
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 60, vertical: 20),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                    30), // Increased the border radius
                               ),
                             ),
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Please enter a username';
-                              }
-                              return null;
-                            },
+                            child: Text('Add Member',
+                                style: TextStyle(color: Colors.white)),
                           ),
-
-                          SizedBox(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              ElevatedButton(
-                                onPressed: addMember,
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Color(0xFF85C1E9),
-                                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30), // Increased the border radius
-                                  ),
-                                ),
-                                child: Text('Add', style: TextStyle(color: Colors.white)),
-                              ),
-                              ElevatedButton(
-                                onPressed: toggleFormVisibility,
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Color(0xFF85C1E9),
-                                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30), // Increased the border radius
-                                  ),
-                                ),
-                                child: Text('Back', style: TextStyle(color: Colors.white)),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    )
-                        : ElevatedButton(
-                      onPressed: toggleFormVisibility,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF85C1E9),
-                        padding: EdgeInsets.symmetric(horizontal: 60, vertical: 20),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30), // Increased the border radius
-                        ),
-                      ),
-                      child: Text('Add Member', style: TextStyle(color: Colors.white)),
-                    ),
                   ),
                 ),
               ),
@@ -176,11 +190,10 @@ class _MemberPageState extends State<MemberPage> {
                 alignment: Alignment.center,
                 child: Text(
                   'No Member Added Yet',
-                  style: TextStyle(fontSize: 18, fontWeight:FontWeight.bold ),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
-
           Expanded(
             child: ListView.builder(
               itemCount: _members.length,
@@ -202,7 +215,8 @@ class MemberListItem extends StatelessWidget {
   final String name;
   final VoidCallback onDelete;
 
-  const MemberListItem({Key? key, required this.name, required this.onDelete}) : super(key: key);
+  const MemberListItem({Key? key, required this.name, required this.onDelete})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -218,9 +232,10 @@ class MemberListItem extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Icon(Icons.person, color: Color(0xFF85C1E9)),
+                  Icon(Icons.person, color: Color.fromARGB(255, 2, 34, 82)),
                   SizedBox(width: 10),
-                  Text(name, style: TextStyle(fontSize: 16, color: Color(0xFF85C1E9))),
+                  Text(name,
+                      style: TextStyle(fontSize: 16, color: Colors.black)),
                 ],
               ),
               IconButton(
@@ -235,4 +250,3 @@ class MemberListItem extends StatelessWidget {
     );
   }
 }
-
