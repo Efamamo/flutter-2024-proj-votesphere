@@ -201,10 +201,7 @@ class _HomeState extends State<Home> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return Settings();
-                      }));
+                      Navigator.pushNamed(context, 'settings');
                     },
                     child: const Row(
                       children: [
@@ -221,7 +218,9 @@ class _HomeState extends State<Home> {
                   ),
                   group != ''
                       ? GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(context, 'members');
+                          },
                           child: const Row(
                             children: [
                               Icon(Icons.people),
@@ -240,9 +239,7 @@ class _HomeState extends State<Home> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return LoginPage();
-                  }));
+                  Navigator.pushNamed(context, 'login');
                 },
                 child: const Row(
                   children: [
@@ -348,15 +345,9 @@ class _HomeState extends State<Home> {
                   )
                 : SingleChildScrollView(
                     child: Column(children: [
-                      Row(
-                        children: [
-                          Text("Enjoy the Poll",
-                              style: TextStyle(
-                                  color: Colors.deepOrange,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold)),
-                          Icon(Icons.emoji_events),
-                        ],
+                      Image.asset(
+                        '../../../assets/vote.jpg',
+                        width: 230,
                       ),
                       SizedBox(
                         height: 50,
